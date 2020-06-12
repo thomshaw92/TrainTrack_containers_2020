@@ -1,4 +1,5 @@
 #!/bin/bash
+
 #First let's try the simplest example:
 docker pull hello-world
 
@@ -27,16 +28,13 @@ docker rmi -f ${image_id}
 #Then we pull fmriprep (this will take a while!)
 docker pull poldracklab/fmriprep:latest
 #NB you can use the docker fmriprep wrapper but we will be interfacing directly with the Docker image.
-
-#bind points for docker here.. 
-docker run -ti --rm \
-    -v $HOME/data/BrainHackOHBM2020:/data:ro \
-    -v $HOME/data/derivatives:/out \
-    -v $HOME/data/work:/work \
-    poldracklab/fmriprep:latest \
-    /data /out/fmriprep-latest \
-    participant \
-    -w /work
-
-
 #check in https://fmriprep.readthedocs.io/en/stable/docker.html 
+
+docker run -ti --rm `
+-v $HOME\data\BrainHackOHBM2020:\data:ro `
+-v $HOME/data/derivatives:/out `
+-v $HOME\data\work:\work `
+poldracklab\fmriprep:latest `
+/data \out\fmriprep-latest `
+participant `
+-w \work
