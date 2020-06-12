@@ -29,7 +29,8 @@ docker rmi -f ${image_id}
 docker pull poldracklab/fmriprep:latest
 #NB you can use the docker fmriprep wrapper but we will be interfacing directly with the Docker image.
 #check in https://fmriprep.readthedocs.io/en/stable/docker.html 
-
+#https://hub.docker.com/r/poldracklab/fmriprep/tags
+##FIXME I can't get this to work on windows
 docker run -ti --rm `
 -v $HOME\data\BrainHackOHBM2020:\data:ro `
 -v $HOME/data/derivatives:/out `
@@ -38,3 +39,7 @@ poldracklab\fmriprep:latest `
 /data \out\fmriprep-latest `
 participant `
 -w \work
+
+
+#If you are on Linux:
+
