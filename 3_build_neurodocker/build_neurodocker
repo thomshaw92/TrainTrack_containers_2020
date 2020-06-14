@@ -1,5 +1,6 @@
 #!/bin/bash
 
+module load singularity/3.5.0 
 #TODO add conda to the path checkbox
 #install C:\Users\USERNAME\Downloads\Miniconda3-latest-Windows-x86_64.exe'
 #add python to your path setx PATH "%PATH%;C:\ProgramData\Miniconda3\Scripts"
@@ -28,3 +29,8 @@ neurodocker generate singularity \
  #https://github.com/singularityhub/singularityhub.github.io/wiki
  #https://cloud.sylabs.io/builder
  #build online
+ singularity remote login
+ #generate an API token
+ singularity build --remote ${imageName}_${buildDate}.sif ./Singularity.itksnap
+ #run
+ singularity exec itksnap_20200614.sif itksnap
