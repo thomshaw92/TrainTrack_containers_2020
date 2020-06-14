@@ -1,9 +1,5 @@
 #!/bin/bash
-
 module load singularity/3.5.0 
-#TODO add conda to the path checkbox
-#install C:\Users\USERNAME\Downloads\Miniconda3-latest-Windows-x86_64.exe'
-#add python to your path setx PATH "%PATH%;C:\ProgramData\Miniconda3\Scripts"
 #first install neurodocker
 pip install --user neurodocker
 pip install git+https://github.com/stebo85/neurodocker@add-itksnap
