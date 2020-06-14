@@ -1,14 +1,18 @@
-#!/bin/bash
+#!/usr/bin/env bash
+# load singularity module
 module load singularity/3.5.0 
-#first install neurodocker
+
+#install neurodocker
 pip install --user neurodocker
 pip install git+https://github.com/stebo85/neurodocker@add-itksnap
-#!/usr/bin/env bash
-export toolName='itksnap'
-export toolVersion='3.8.0'
+
+# define version and tool to be built
+toolName='itksnap'
+toolVersion='3.8.0'
 buildDate=`date +%Y%m%d`
 imageName='itksnap'
 
+# generate singularity recipe
 neurodocker generate singularity \
 --base ubuntu:16.04 \
 --pkg-manager apt \
@@ -18,8 +22,8 @@ neurodocker generate singularity \
 --user=neuro \
 > Singularity.itksnap
 
-
- sudo singularity build ${imageName}_${buildDate}.sif ./Singularity 
+# build singularity container locally 
+sudo singularity build ${imageName}_${buildDate}.sif ./Singularity 
 
  #If you don't have root access...
  #https://github.com/singularityhub/singularityhub.github.io/wiki
@@ -28,5 +32,7 @@ neurodocker generate singularity \
  singularity remote login
  #generate an API token
  singularity build --remote ${imageName}_${buildDate}.sif ./Singularity.itksnap
+ 
+ 
  #run
  singularity exec itksnap_20200614.sif itksnap
