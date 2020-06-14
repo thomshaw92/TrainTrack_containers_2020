@@ -34,8 +34,5 @@ sudo singularity build ${imageName}_${buildDate}.sif ./Singularity
  singularity build --remote ${imageName}_${buildDate}.sif ./Singularity.itksnap
  
  
- #run
+ #run (in mobaxterm to use X11 server)
  singularity exec itksnap_20200614.sif itksnap
-
- # setup X-server in VS code:
- # - install Remote X11 and Remote X11 (SSH) extensions 
