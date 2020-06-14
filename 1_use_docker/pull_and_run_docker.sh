@@ -8,6 +8,7 @@ docker run hello-world
 
 #where are the Docker images located?
 docker images 
+docker container ls --all
 #find image id of hello world
 
 #caching
