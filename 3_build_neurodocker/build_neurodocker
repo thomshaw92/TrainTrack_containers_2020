@@ -4,5 +4,27 @@
 #install C:\Users\USERNAME\Downloads\Miniconda3-latest-Windows-x86_64.exe'
 #add python to your path setx PATH "%PATH%;C:\ProgramData\Miniconda3\Scripts"
 #first install neurodocker
-pip install neurodocker
+pip install --user neurodocker
+pip install git+https://github.com/stebo85/neurodocker@add-itksnap
+#!/usr/bin/env bash
+export toolName='itksnap'
+export toolVersion='3.8.0'
+buildDate=`date +%Y%m%d`
+imageName='itksnap'
 
+neurodocker generate singularity \
+--base ubuntu:16.04 \
+--pkg-manager apt \
+--${toolName} version=${toolVersion} \
+--env DEPLOY_PATH=/opt/${toolName}-${toolVersion}/bin/ \
+--entrypoint /opt/${toolName}-${toolVersion}/bin/itksnap \
+--user=neuro \
+> Singularity.itksnap
+
+
+ sudo singularity build ${imageName}_${buildDate}.sif ./Singularity 
+
+ #If you don't have root access...
+ #https://github.com/singularityhub/singularityhub.github.io/wiki
+ #https://cloud.sylabs.io/builder
+ #build online
