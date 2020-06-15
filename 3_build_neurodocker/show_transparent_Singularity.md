@@ -8,10 +8,16 @@ cd itksnap_ts/
 ```
 
 This automatically creates wrapper scripts and instead of typing
+```
+singularity exec itksnap_20200614.sif itksnap
+```
 
+we can just run the wrapper script created
+```
+itksnap
+```
 
-
-Or download a container we already build by showing which containers exist:
+download a container we already build by showing which containers exist:
 ```
 curl -s -S -X GET https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages
 ```
